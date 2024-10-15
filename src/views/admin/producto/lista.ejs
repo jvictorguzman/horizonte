@@ -1,0 +1,108 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title"><h1>Lista de Productos</h1></div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Nuevo Producto
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Nuevo Producto</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="/admin/producto" method="post">
+        <div class="modal-body">
+          <label for="">Ingrese Nombre</label>
+          <input type="text" name="nombre" class="form-control">
+          <label for="">Ingrese Precio</label>
+          <input type="number" name="precio" class="form-control">
+          <label for="">Ingrese Cantidad</label>
+          <input type="number" name="stock" class="form-control">
+          <label for="">Ingrese Descripcion</label>
+          <textarea name="descripcion" class="form-control"></textarea>
+          
+        </div>  
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Guardar Producto</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
+
+
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>NOMBRE</th>
+                                <th>PRECIO</th>
+                                <th>STOCK</th>
+                                <th>DESCRIPCION</th>
+                                <th>ACCIONES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% datos.forEach(function(prod){ %>
+                            <tr>
+                                <td><%- prod.id %></td>
+                                <td><%- prod.nombre %></td>
+                                <td><%- prod.precio %></td>
+                                <td><%- prod.stock %></td>
+                                <td><%- prod.descripcion %></td>     
+                                <td>
+                                  <a href="/admin/producto/<%-prod.id%>/editar" class="btn btn-warning">Editar</a>
+                                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eliminarModal<%- prod.id %>">
+                                    Eliminar
+                                  </button>  
+                                  <!-- Modal -->
+  <div class="modal fade" id="eliminarModal<%- prod.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Eliminar</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="/admin/producto/<%- prod.id %>/eliminar" method="post">
+        <div class="modal-body">
+          ¿Está seguro de Eliminar a <%- prod.nombre %>?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-danger">Eliminar</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>                               
+                                </td>             
+                               
+                            </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%-contentFor('menu') %>
+<%-contentFor('menu') %>
+
+
+<h1>Listado de Categorias</h1>

@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-md-7">
+
+        <h1>Editar Usuario</h1>
+        <div class="card">
+            <div class="card-body">
+                <% if (mensaje.length > 0) { %>
+                    <div class="alert alert-danger"><%= mensaje %></div>
+                <% } %>                            
+                <form action="/admin/usuario/<%-usuario.id%>" method="post">
+                    <label for="">Ingrese Usuario</label>
+                    <input type="text" name="username" class="form-control" value="<%- usuario.username %>">  
+                    <br>
+                    <label for="">Ingrese Correo</label>
+                    <input type="email" name="correo" class="form-control" value="<%- usuario.email %>">
+                    <br>
+                    <label for="">Ingrese Contrasena</label>
+                    <input type="password" name="clave" class="form-control" value="<%- usuario.password %>">
+                    <br>
+                    <input type="submit" value="Actualizar Usuario" class="btn btn-primary">
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
